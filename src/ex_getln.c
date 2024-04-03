@@ -4376,7 +4376,7 @@ get_list_range(char_u **str, int *num1, int *num2)
     varnumber_T	num;
 
     *str = skipwhite(*str);
-    if (**str == '-' || vim_isdigit(**str))  // parse "from" part of range
+    if (**str == '-' || isdigit(**str))  // parse "from" part of range
     {
 	vim_str2nr(*str, NULL, &len, 0, &num, NULL, 0, FALSE, NULL);
 	*str += len;

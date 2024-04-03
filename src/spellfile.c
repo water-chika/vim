@@ -3535,7 +3535,7 @@ spell_read_dic(spellinfo_T *spin, char_u *fname, afffile_T *affile)
     spin->si_msg_count = 999999;
 
     // Read and ignore the first line: word count.
-    if (vim_fgets(line, MAXLINELEN, fd) || !vim_isdigit(*skipwhite(line)))
+    if (vim_fgets(line, MAXLINELEN, fd) || !isdigit(*skipwhite(line)))
 	semsg(_(e_no_word_count_in_str), fname);
 
     /*

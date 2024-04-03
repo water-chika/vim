@@ -1916,7 +1916,7 @@ ex_lockvar(exarg_T *eap)
 
     if (eap->forceit)
 	deep = -1;
-    else if (vim_isdigit(*arg))
+    else if (isdigit(*arg))
     {
 	deep = getdigits(&arg);
 	arg = skipwhite(arg);
@@ -4294,7 +4294,7 @@ valid_varname(char_u *varname, int len, int autoload)
     char_u *p;
 
     for (p = varname; len < 0 ? *p != NUL : p < varname + len; ++p)
-	if (!eval_isnamec1(*p) && (p == varname || !VIM_ISDIGIT(*p))
+	if (!eval_isnamec1(*p) && (p == varname || !isdigit(*p))
 					 && !(autoload && *p == AUTOLOAD_CHAR))
 	{
 	    semsg(_(e_illegal_variable_name_str), varname);

@@ -968,7 +968,7 @@ eval_foldexpr(win_T *wp, int *cp)
 	    // If the result is a string, check if there is a non-digit before
 	    // the number.
 	    s = tv.vval.v_string;
-	    if (*s != NUL && !VIM_ISDIGIT(*s) && *s != '-')
+	    if (*s != NUL && !isdigit(*s) && *s != '-')
 		*cp = *s++;
 	    retval = atol((char *)s);
 	}

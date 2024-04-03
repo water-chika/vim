@@ -278,9 +278,9 @@ cause_errthrow(
 			// Skip the extra "Vim " prefix for message "E458".
 			tmsg = elem->msg;
 			if (STRNCMP(tmsg, "Vim E", 5) == 0
-				&& VIM_ISDIGIT(tmsg[5])
-				&& VIM_ISDIGIT(tmsg[6])
-				&& VIM_ISDIGIT(tmsg[7])
+				&& isdigit(tmsg[5])
+				&& isdigit(tmsg[6])
+				&& isdigit(tmsg[7])
 				&& tmsg[8] == ':'
 				&& tmsg[9] == ' ')
 			    (*msg_list)->throw_msg = &tmsg[4];
@@ -462,11 +462,11 @@ get_exception_string(
 	{
 	    if (*p == NUL
 		    || (*p == 'E'
-			&& VIM_ISDIGIT(p[1])
+			&& isdigit(p[1])
 			&& (p[2] == ':'
-			    || (VIM_ISDIGIT(p[2])
+			    || (isdigit(p[2])
 				&& (p[3] == ':'
-				    || (VIM_ISDIGIT(p[3])
+				    || (isdigit(p[3])
 					&& p[4] == ':'))))))
 	    {
 		if (*p == NUL || p == mesg)

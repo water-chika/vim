@@ -852,7 +852,7 @@ wlv_screen_line(win_T *wp, winlinevars_T *wlv, int clear_end)
 	if (wp->w_p_nu && wp->w_p_rnu)
 	    // Do not overwrite the line number, change "123 text" to
 	    // "123<<<xt".
-	    while (skip < wp->w_width && VIM_ISDIGIT(ScreenLines[off]))
+	    while (skip < wp->w_width && isdigit(ScreenLines[off]))
 	    {
 		++off;
 		++skip;

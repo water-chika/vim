@@ -3531,7 +3531,7 @@ ex_z(exarg_T *eap)
 
     if (*x != 0)
     {
-	if (!VIM_ISDIGIT(*x))
+	if (!isdigit(*x))
 	{
 	    emsg(_(e_non_numeric_argument_to_z));
 	    return;
@@ -4014,7 +4014,7 @@ ex_substitute(exarg_T *eap)
      * check for a trailing count
      */
     cmd = skipwhite(cmd);
-    if (VIM_ISDIGIT(*cmd))
+    if (isdigit(*cmd))
     {
 	i = getdigits(&cmd);
 	if (i <= 0 && !eap->skip && subflags.do_error)

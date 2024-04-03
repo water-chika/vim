@@ -711,7 +711,7 @@ ex_history(exarg_T *eap)
 	return;
     }
 
-    if (!(VIM_ISDIGIT(*arg) || *arg == '-' || *arg == ','))
+    if (!(isdigit(*arg) || *arg == '-' || *arg == ','))
     {
 	end = arg;
 	while (ASCII_ISALPHA(*end)

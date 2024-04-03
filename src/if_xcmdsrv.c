@@ -1280,7 +1280,7 @@ server_parse_message(
 		    case 'r':
 			end = skipwhite(p + 2);
 			resWindow = 0;
-			while (vim_isxdigit(*end))
+			while (isxdigit(*end))
 			{
 			    resWindow = 16 * resWindow + (long_u)hex2nr(*end);
 			    ++end;
@@ -1537,6 +1537,6 @@ IsSerialName(char_u *str)
 {
     int len = STRLEN(str);
 
-    return (len > 1 && vim_isdigit(str[len - 1]));
+    return (len > 1 && isdigit(str[len - 1]));
 }
 #endif	// FEAT_CLIENTSERVER

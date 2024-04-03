@@ -2038,7 +2038,7 @@ set_context_in_breakadd_cmd(expand_T *xp, char_u *arg, cmdidx_T cmdidx)
 	p = skipwhite(p);
 
 	// skip line number (if specified)
-	if (VIM_ISDIGIT(*p))
+	if (isdigit(*p))
 	{
 	    p = skipdigits(p);
 	    if (*p != ' ')
@@ -2073,7 +2073,7 @@ set_context_in_scriptnames_cmd(expand_T *xp, char_u *arg)
     xp->xp_pattern = NULL;
 
     p = skipwhite(arg);
-    if (VIM_ISDIGIT(*p))
+    if (isdigit(*p))
 	return NULL;
 
     xp->xp_context = EXPAND_SCRIPTNAMES;

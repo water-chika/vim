@@ -251,7 +251,7 @@ is_simple_key(char_u *key)
     if (!ASCII_ISALPHA(*key))
 	return FALSE;
     for (p = key + 1; *p != NUL; ++p)
-	if (!ASCII_ISALPHA(*p) && *p != '_' && !vim_isdigit(*p))
+	if (!ASCII_ISALPHA(*p) && *p != '_' && !isdigit(*p))
 	    return FALSE;
     return TRUE;
 }

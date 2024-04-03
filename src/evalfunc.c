@@ -4796,7 +4796,7 @@ common_function(typval_T *argvars, typval_T *rettv, int is_funcref)
 	    s = NULL;
     }
 
-    if (s == NULL || *s == NUL || (use_string && VIM_ISDIGIT(*s))
+    if (s == NULL || *s == NUL || (use_string && isdigit(*s))
 					 || (is_funcref && trans_name == NULL))
 	semsg(_(e_invalid_argument_str),
 				  use_string ? tv_get_string(&argvars[0]) : s);
@@ -6993,8 +6993,8 @@ f_has(typval_T *argvars, typval_T *rettv)
 		// This works for patch-8.1.2, patch-9.0.3, patch-10.0.4, etc.
 		// Not for patch-9.10.5.
 		major = (int)strtoul((char *)name + 6, &end, 10);
-		if (*end == '.' && vim_isdigit(end[1])
-			&& end[2] == '.' && vim_isdigit(end[3]))
+		if (*end == '.' && isdigit(end[1])
+			&& end[2] == '.' && isdigit(end[3]))
 		{
 		    minor = atoi(end + 1);
 
@@ -10408,7 +10408,7 @@ get_yank_type(char_u **pp, char_u *yank_type, long *block_len)
 	    break;
 	case 'b': case Ctrl_V:	// block-wise selection
 	    *yank_type = MBLOCK;
-	    if (VIM_ISDIGIT(stropt[1]))
+	    if (isdigit(stropt[1]))
 	    {
 		++stropt;
 		*block_len = getdigits(&stropt) - 1;

@@ -1878,7 +1878,7 @@ open_line(
 		    {
 			if (*p == COM_RIGHT || *p == COM_LEFT)
 			    c = *p++;
-			else if (VIM_ISDIGIT(*p) || *p == '-')
+			else if (isdigit(*p) || *p == '-')
 			    off = getdigits(&p);
 			else
 			    ++p;

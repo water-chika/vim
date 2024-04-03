@@ -2704,7 +2704,7 @@ do_addsub(
 	    }
 
 	if (do_hex)
-	    while (col > 0 && vim_isxdigit(ptr[col]))
+	    while (col > 0 && isxdigit(ptr[col]))
 	    {
 		--col;
 		if (has_mbyte)
@@ -2719,14 +2719,14 @@ do_addsub(
 		    && ptr[col - 1] == '0'
 		    && (!has_mbyte ||
 			!(*mb_head_off)(ptr, ptr + col - 1))
-		    && vim_isxdigit(ptr[col + 1]))))
+		    && isxdigit(ptr[col + 1]))))
 	{
 
 	    // In case of binary/hexadecimal pattern overlap match, rescan
 
 	    col = pos->col;
 
-	    while (col > 0 && vim_isdigit(ptr[col]))
+	    while (col > 0 && isdigit(ptr[col]))
 	    {
 		col--;
 		if (has_mbyte)
@@ -2741,7 +2741,7 @@ do_addsub(
 		&& ptr[col - 1] == '0'
 		&& (!has_mbyte ||
 		    !(*mb_head_off)(ptr, ptr + col - 1))
-		&& vim_isxdigit(ptr[col + 1])) ||
+		&& isxdigit(ptr[col + 1])) ||
 	    (       do_bin
 		&& col > 0
 		&& (ptr[col] == 'B'
@@ -2764,12 +2764,12 @@ do_addsub(
 	    col = pos->col;
 
 	    while (ptr[col] != NUL
-		    && !vim_isdigit(ptr[col])
+		    && !isdigit(ptr[col])
 		    && !(do_alpha && ASCII_ISALPHA(ptr[col])))
 		col += mb_ptr2len(ptr + col);
 
 	    while (col > 0
-		    && vim_isdigit(ptr[col - 1])
+		    && isdigit(ptr[col - 1])
 		    && !(do_alpha && ASCII_ISALPHA(ptr[col])))
 	    {
 		--col;
@@ -2782,7 +2782,7 @@ do_addsub(
     if (visual)
     {
 	while (ptr[col] != NUL && length > 0
-		&& !vim_isdigit(ptr[col])
+		&& !isdigit(ptr[col])
 		&& !(do_alpha && ASCII_ISALPHA(ptr[col])))
 	{
 	    int mb_len = mb_ptr2len(ptr + col);

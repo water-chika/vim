@@ -1872,7 +1872,7 @@ skiphex(char_u *q)
 {
     char_u	*p = q;
 
-    while (vim_isxdigit(*p))	// skip to next non-digit
+    while (isxdigit(*p))	// skip to next non-digit
 	++p;
     return p;
 }
@@ -1912,38 +1912,13 @@ skiptohex(char_u *q)
 {
     char_u	*p = q;
 
-    while (*p != NUL && !vim_isxdigit(*p))	// skip to next digit
+    while (*p != NUL && !isxdigit(*p))	// skip to next digit
 	++p;
     return p;
 }
 
 /*
- * Variant of isdigit() that can handle characters > 0x100.
- * We don't use isdigit() here, because on some systems it also considers
- * superscript 1 to be a digit.
- * Use the VIM_ISDIGIT() macro for simple arguments.
- */
-    int
-vim_isdigit(int c)
-{
-    return (c >= '0' && c <= '9');
-}
-
-/*
- * Variant of isxdigit() that can handle characters > 0x100.
- * We don't use isxdigit() here, because on some systems it also considers
- * superscript 1 to be a digit.
- */
-    int
-vim_isxdigit(int c)
-{
-    return (c >= '0' && c <= '9')
-	|| (c >= 'a' && c <= 'f')
-	|| (c >= 'A' && c <= 'F');
-}
-
-/*
- * Corollary of vim_isdigit and vim_isxdigit() that can handle
+ * Corollary of isdigit and isxdigit() that can handle
  * characters > 0x100.
  */
     int
@@ -2224,7 +2199,7 @@ vim_str2nr(
     {
 	pre = ptr[1];
 	if ((what & STR2NR_HEX)
-		&& (pre == 'X' || pre == 'x') && vim_isxdigit(ptr[2])
+		&& (pre == 'X' || pre == 'x') && isxdigit(ptr[2])
 		&& (maxlen == 0 || maxlen > 2))
 	    // hexadecimal
 	    ptr += 2;
@@ -2323,7 +2298,7 @@ vim_str2nr(
 	// hex
 	if (pre != 0)
 	    n += 2;	    // skip over "0x"
-	while (vim_isxdigit(*ptr))
+	while (isxdigit(*ptr))
 	{
 	    // avoid ubsan error for overflow
 	    if (un <= UVARNUM_MAX / 16)
@@ -2337,7 +2312,7 @@ vim_str2nr(
 	    ++ptr;
 	    if (n++ == maxlen)
 		break;
-	    if ((what & STR2NR_QUOTE) && *ptr == '\'' && vim_isxdigit(ptr[1]))
+	    if ((what & STR2NR_QUOTE) && *ptr == '\'' && isxdigit(ptr[1]))
 	    {
 		++ptr;
 		if (n++ == maxlen)
@@ -2434,7 +2409,7 @@ hex2nr(int c)
     int
 hexhex2nr(char_u *p)
 {
-    if (!vim_isxdigit(p[0]) || !vim_isxdigit(p[1]))
+    if (!isxdigit(p[0]) || !isxdigit(p[1]))
 	return -1;
     return (hex2nr(p[0]) << 4) + hex2nr(p[1]);
 }

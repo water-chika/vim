@@ -1929,7 +1929,7 @@ collection:
 				break;
 			    case CLASS_XDIGIT:
 				for (cu = 1; cu <= 255; cu++)
-				    if (vim_isxdigit(cu))
+				    if (isxdigit(cu))
 					regmbc(cu);
 				break;
 			    case CLASS_TAB:

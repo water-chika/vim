@@ -164,7 +164,7 @@ find_ucmd(
 	    k = 0;
 	    while (k < len && *np != NUL && *cp++ == *np++)
 		k++;
-	    if (k == len || (*np == NUL && vim_isdigit(eap->cmd[k])))
+	    if (k == len || (*np == NUL && isdigit(eap->cmd[k])))
 	    {
 		// If finding a second match, the command is ambiguous.  But
 		// not if a buffer-local command wasn't a full match and a

@@ -3976,7 +3976,7 @@ did_set_varsofttabstop(optset_T *args)
     {
 	for (cp = *varp; *cp; ++cp)
 	{
-	    if (vim_isdigit(*cp))
+	    if (isdigit(*cp))
 		continue;
 	    if (*cp == ',' && cp > *varp && *(cp-1) != ',')
 		continue;
@@ -4011,7 +4011,7 @@ did_set_vartabstop(optset_T *args)
     {
 	for (cp = *varp; *cp; ++cp)
 	{
-	    if (vim_isdigit(*cp))
+	    if (isdigit(*cp))
 		continue;
 	    if (*cp == ',' && cp > *varp && *(cp-1) != ',')
 		continue;
@@ -4088,14 +4088,14 @@ did_set_viminfo(optset_T *args)
 	else if (*s == '%')
 	{
 	    // optional number
-	    while (vim_isdigit(*++s))
+	    while (isdigit(*++s))
 		;
 	}
 	else if (*s == '!' || *s == 'h' || *s == 'c')
 	    ++s;		// no extra chars
 	else		// must have a number
 	{
-	    while (vim_isdigit(*++s))
+	    while (isdigit(*++s))
 		;
 
 	    if (!VIM_ISDIGIT(*(s - 1)))

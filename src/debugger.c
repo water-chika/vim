@@ -640,7 +640,7 @@ dbg_parsearg(
 #ifdef FEAT_PROFILE
 	    gap != &prof_ga &&
 #endif
-	    VIM_ISDIGIT(*p))
+	    isdigit(*p))
     {
 	bp->dbg_lnum = getdigits(&p);
 	p = skipwhite(p);
@@ -810,7 +810,7 @@ ex_breakdel(exarg_T *eap)
 #endif
     }
 
-    if (vim_isdigit(*eap->arg))
+    if (isdigit(*eap->arg))
     {
 	// ":breakdel {nr}"
 	nr = atol((char *)eap->arg);

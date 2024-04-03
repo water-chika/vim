@@ -257,7 +257,7 @@ viminfo_readstring(
     char_u	*s, *d;
     long	len;
 
-    if (virp->vir_line[off] == Ctrl_V && vim_isdigit(virp->vir_line[off + 1]))
+    if (virp->vir_line[off] == Ctrl_V && isdigit(virp->vir_line[off + 1]))
     {
 	len = atol((char *)virp->vir_line + off + 1);
 	if (len > 0 && len < 1000000)
@@ -1006,7 +1006,7 @@ barline_parse(vir_T *virp, char_u *text, garray_T *values)
 		allocated = TRUE;
 	    }
 
-	    if (vim_isdigit(p[1]))
+	    if (isdigit(p[1]))
 	    {
 		size_t len;
 		size_t todo;

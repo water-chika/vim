@@ -2357,7 +2357,7 @@ do_one_cmd(
 	    && *ea.arg != NUL
 	       // Do not allow register = for user commands
 	    && (!IS_USER_CMDIDX(ea.cmdidx) || *ea.arg != '=')
-	    && !((ea.argt & EX_COUNT) && VIM_ISDIGIT(*ea.arg)))
+	    && !((ea.argt & EX_COUNT) && isdigit(*ea.arg)))
     {
 #ifndef FEAT_CLIPBOARD
 	// check these explicitly for a more specific error message
@@ -2391,7 +2391,7 @@ do_one_cmd(
      * Check for a count.  When accepting a EX_BUFNAME, don't use "123foo" as a
      * count, it's a buffer name.
      */
-    if ((ea.argt & EX_COUNT) && VIM_ISDIGIT(*ea.arg)
+    if ((ea.argt & EX_COUNT) && isdigit(*ea.arg)
 	    && (!(ea.argt & EX_BUFNAME) || *(p = skipdigits(ea.arg + 1)) == NUL
 							  || VIM_ISWHITE(*p)))
     {
@@ -3161,7 +3161,7 @@ parse_command_modifiers(
 			}
 			if (!checkforcmd_noparen(&p, "verbose", 4))
 			    break;
-			if (vim_isdigit(*eap->cmd))
+			if (isdigit(*eap->cmd))
 			{
 			    // zero means not set, one is verbose == 0, etc.
 			    cmod->cmod_verbose = atoi((char *)eap->cmd) + 1;
@@ -4048,7 +4048,7 @@ modifier_len(char_u *cmd)
     int		i, j;
     char_u	*p = cmd;
 
-    if (VIM_ISDIGIT(*cmd))
+    if (isdigit(*cmd))
 	p = skipwhite(skipdigits(cmd + 1));
     for (i = 0; i < (int)ARRAY_LENGTH(cmdmods); ++i)
     {
@@ -4094,7 +4094,7 @@ cmd_exists(char_u *name)
     p = find_ex_command(&ea, &full, NULL, NULL);
     if (p == NULL)
 	return 3;
-    if (vim_isdigit(*name) && ea.cmdidx != CMD_match)
+    if (isdigit(*name) && ea.cmdidx != CMD_match)
 	return 0;
     if (*skipwhite(p) != NUL)
 	return 0;	// trailing garbage
@@ -4586,14 +4586,14 @@ get_address(
 		break;
 
 	    default:
-		if (VIM_ISDIGIT(*cmd))	// absolute line number
+		if (isdigit(*cmd))	// absolute line number
 		    lnum = getdigits(&cmd);
 	}
 
 	for (;;)
 	{
 	    cmd = skipwhite(cmd);
-	    if (*cmd != '-' && *cmd != '+' && !VIM_ISDIGIT(*cmd))
+	    if (*cmd != '-' && *cmd != '+' && !isdigit(*cmd))
 		break;
 
 	    if (lnum == MAXLNUM)
@@ -4638,11 +4638,11 @@ get_address(
 		}
 	    }
 
-	    if (VIM_ISDIGIT(*cmd))
+	    if (isdigit(*cmd))
 		i = '+';		// "number" is same as "+number"
 	    else
 		i = *cmd++;
-	    if (!VIM_ISDIGIT(*cmd))	// '+' is '+1'
+	    if (!isdigit(*cmd))	// '+' is '+1'
 		n = 1;
 	    else
 	    {
@@ -6356,7 +6356,7 @@ get_tabpage_arg(exarg_T *eap)
 		char_u *cmdp = eap->cmd;
 
 		while (--cmdp > *eap->cmdlinep
-			&& (VIM_ISWHITE(*cmdp) || VIM_ISDIGIT(*cmdp)))
+			&& (VIM_ISWHITE(*cmdp) || isdigit(*cmdp)))
 		    ;
 		if (*cmdp == '-')
 		{
@@ -9131,7 +9131,7 @@ ex_findpat(exarg_T *eap)
     }
 
     n = 1;
-    if (vim_isdigit(*eap->arg))	// get count
+    if (isdigit(*eap->arg))	// get count
     {
 	n = getdigits(&eap->arg);
 	eap->arg = skipwhite(eap->arg);

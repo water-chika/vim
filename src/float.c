@@ -66,7 +66,7 @@ string2float(
 		++quotes;
 		mch_memmove(p, p + 1, STRLEN(p));
 	    }
-	    if (!vim_isdigit(*p))
+	    if (!isdigit(*p))
 		break;
 	}
 	s = (char *)buf;

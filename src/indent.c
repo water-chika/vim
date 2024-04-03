@@ -1680,7 +1680,7 @@ ex_retab(exarg_T *eap)
     new_ts_str = eap->arg;
     if (tabstop_set(eap->arg, &new_vts_array) == FAIL)
 	return;
-    while (vim_isdigit(*(eap->arg)) || *(eap->arg) == ',')
+    while (isdigit(*(eap->arg)) || *(eap->arg) == ',')
 	++(eap->arg);
 
     // This ensures that either new_vts_array and new_ts_str are freshly

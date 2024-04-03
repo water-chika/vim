@@ -1587,7 +1587,7 @@ may_remove_shift_modifier(int modifiers, int key)
 		|| modifiers == (MOD_MASK_SHIFT | MOD_MASK_META))
 	    && ((key >= '!' && key <= '/')
 		|| (key >= ':' && key <= 'Z')
-		|| vim_isdigit(key)
+		|| isdigit(key)
 		|| (key >= '[' && key <= '`')
 		|| (key >= '{' && key <= '~')))
 	return modifiers & ~MOD_MASK_SHIFT;

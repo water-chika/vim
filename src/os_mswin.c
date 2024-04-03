@@ -2247,7 +2247,7 @@ enumWindowsGetServer(HWND hwnd, LPARAM lparam)
     // If we are looking for an alternate server, remember this name.
     if (altname_buf_ptr != NULL
 	    && STRNICMP(server, id->name, STRLEN(id->name)) == 0
-	    && vim_isdigit(server[STRLEN(id->name)]))
+	    && isdigit(server[STRLEN(id->name)]))
     {
 	STRCPY(altname_buf_ptr, server);
 	altname_buf_ptr = NULL;	    // don't use another name
@@ -2441,7 +2441,7 @@ serverSendToVim(
 
     // If the server name does not end in a digit then we look for an
     // alternate name.  e.g. when "name" is GVIM then we may find GVIM2.
-    if (STRLEN(name) > 1 && !vim_isdigit(name[STRLEN(name) - 1]))
+    if (STRLEN(name) > 1 && !isdigit(name[STRLEN(name) - 1]))
 	altname_buf_ptr = altname_buf;
     altname_buf[0] = NUL;
     target = findServer(name);

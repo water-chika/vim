@@ -1629,7 +1629,7 @@ decodeModifyOtherKeys(int c)
 	{
 	    if (p[idx] == ';')
 		++argidx;
-	    else if (VIM_ISDIGIT(p[idx]))
+	    else if (isdigit(p[idx]))
 		arg[argidx] = arg[argidx] * 10 + (p[idx] - '0');
 	    else
 		break;
@@ -1934,7 +1934,7 @@ get_literal(int noReduceKeys)
 	{
 	    if (hex || unicode != 0)
 	    {
-		if (!vim_isxdigit(nc))
+		if (!isxdigit(nc))
 		    break;
 		cc = cc * 16 + hex2nr(nc);
 	    }
@@ -1946,7 +1946,7 @@ get_literal(int noReduceKeys)
 	    }
 	    else
 	    {
-		if (!VIM_ISDIGIT(nc))
+		if (!isdigit(nc))
 		    break;
 		cc = cc * 10 + nc - '0';
 	    }
@@ -2306,7 +2306,7 @@ redo_literal(int c)
 
     // Only digits need special treatment.  Translate them into a string of
     // three digits.
-    if (VIM_ISDIGIT(c))
+    if (isdigit(c))
     {
 	vim_snprintf((char *)buf, sizeof(buf), "%03d", c);
 	AppendToRedobuff(buf);

@@ -1730,7 +1730,7 @@ do_bufdel(
 		arg = skipwhite(arg);
 		if (*arg == NUL)
 		    break;
-		if (!VIM_ISDIGIT(*arg))
+		if (!isdigit(*arg))
 		{
 		    p = skiptowhite_esc(arg);
 		    bnr = buflist_findpat(arg, p,
@@ -4552,7 +4552,7 @@ build_stl_str_hl(
 	    s++;
 	    l = -1;
 	}
-	if (VIM_ISDIGIT(*s))
+	if (isdigit(*s))
 	{
 	    minwid = (int)getdigits(&s);
 	    if (minwid < 0)	// overflow
@@ -4597,7 +4597,7 @@ build_stl_str_hl(
 	if (*s == '.')
 	{
 	    s++;
-	    if (VIM_ISDIGIT(*s))
+	    if (isdigit(*s))
 	    {
 		maxwid = (int)getdigits(&s);
 		if (maxwid <= 0)	// overflow
@@ -4961,7 +4961,7 @@ build_stl_str_hl(
 		for (; l < minwid && p + 1 < out + outlen; l++)
 		{
 		    // Don't put a "-" in front of a digit.
-		    if (l + 1 == minwid && fillchar == '-' && VIM_ISDIGIT(*t))
+		    if (l + 1 == minwid && fillchar == '-' && isdigit(*t))
 			*p++ = ' ';
 		    else
 			MB_CHAR2BYTES(fillchar, p);
@@ -4975,7 +4975,7 @@ build_stl_str_hl(
 		// Change a space by fillchar, unless fillchar is '-' and a
 		// digit follows.
 		if (fillable && *t == ' '
-				&& (!VIM_ISDIGIT(*(t + 1)) || fillchar != '-'))
+				&& (!isdigit(*(t + 1)) || fillchar != '-'))
 		    MB_CHAR2BYTES(fillchar, p);
 		else
 		    *p++ = *t;

@@ -1194,7 +1194,7 @@ ex_mkrc(exarg_T	*eap)
     // ":mkview" or ":mkview 9": generate file name with 'viewdir'
     if (eap->cmdidx == CMD_mkview
 	    && (*eap->arg == NUL
-		|| (vim_isdigit(*eap->arg) && eap->arg[1] == NUL)))
+		|| (isdigit(*eap->arg) && eap->arg[1] == NUL)))
     {
 	eap->forceit = TRUE;
 	fname = get_view_file(*eap->arg);

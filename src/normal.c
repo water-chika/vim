@@ -2563,7 +2563,8 @@ nv_z_get_count(cmdarg_T *cap, int *nchar_arg)
 
 	if (nchar == K_DEL || nchar == K_KDEL)
 	    n /= 10;
-	else if (VIM_ISDIGIT(nchar))
+	else if (
+		(nchar))
 	{
 	    if (vim_append_digit_long(&n, nchar - '0') == FAIL)
 	    {

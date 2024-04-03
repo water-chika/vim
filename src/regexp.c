@@ -960,7 +960,7 @@ gethexchrs(int maxinputlen)
     for (i = 0; i < maxinputlen; ++i)
     {
 	c = regparse[0];
-	if (!vim_isxdigit(c))
+	if (!isxdigit(c))
 	    break;
 	nr <<= 4;
 	nr |= hex2nr(c);
@@ -1052,7 +1052,7 @@ read_limits(long *minval, long *maxval)
     *minval = getdigits(&regparse);
     if (*regparse == ',')	    // There is a comma
     {
-	if (vim_isdigit(*++regparse))
+	if (isdigit(*++regparse))
 	    *maxval = getdigits(&regparse);
 	else
 	    *maxval = MAX_LIMIT;

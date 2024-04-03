@@ -2261,14 +2261,14 @@ eval_number(
 	    {
 		if (*p == '\'')
 		    ++p;
-		if (!vim_isdigit(*p))
+		if (!isdigit(*p))
 		    break;
 		p = skipdigits(p);
 	    }
 	else
 	    p = skipdigits(p);
     }
-    if (!want_string && p[0] == '.' && vim_isdigit(p[1]))
+    if (!want_string && p[0] == '.' && isdigit(p[1]))
     {
 	get_float = TRUE;
 	p = skipdigits(p + 2);
@@ -2277,7 +2277,7 @@ eval_number(
 	    ++p;
 	    if (*p == '-' || *p == '+')
 		++p;
-	    if (!vim_isdigit(*p))
+	    if (!isdigit(*p))
 		get_float = FALSE;
 	    else
 		p = skipdigits(p + 1);
@@ -2305,9 +2305,9 @@ eval_number(
 	// Blob constant: 0z0123456789abcdef
 	if (evaluate)
 	    blob = blob_alloc();
-	for (bp = *arg + 2; vim_isxdigit(bp[0]); bp += 2)
+	for (bp = *arg + 2; isxdigit(bp[0]); bp += 2)
 	{
-	    if (!vim_isxdigit(bp[1]))
+	    if (!isxdigit(bp[1]))
 	    {
 		if (blob != NULL)
 		{
@@ -2320,7 +2320,7 @@ eval_number(
 	    if (blob != NULL)
 		ga_append(&blob->bv_ga,
 			     (hex2nr(*bp) << 4) + hex2nr(*(bp+1)));
-	    if (bp[2] == '.' && vim_isxdigit(bp[3]))
+	    if (bp[2] == '.' && isxdigit(bp[3]))
 		++bp;
 	}
 	if (blob != NULL)
@@ -2444,7 +2444,7 @@ eval_string(char_u **arg, typval_T *rettv, int evaluate, int interpolate)
 		case 'x':
 		case 'u': // Unicode: "\u0023"
 		case 'U':
-			  if (vim_isxdigit(p[1]))
+			  if (isxdigit(p[1]))
 			  {
 			      int	n, nr;
 			      int	c = SAFE_toupper(*p);
@@ -2456,7 +2456,7 @@ eval_string(char_u **arg, typval_T *rettv, int evaluate, int interpolate)
 			      else
 				  n = 8;
 			      nr = 0;
-			      while (--n >= 0 && vim_isxdigit(p[1]))
+			      while (--n >= 0 && isxdigit(p[1]))
 			      {
 				  ++p;
 				  nr = (nr << 4) + hex2nr(*p);

@@ -304,13 +304,13 @@ string2blob(char_u *str)
     if (s[0] != '0' || (s[1] != 'z' && s[1] != 'Z'))
 	goto failed;
     s += 2;
-    while (vim_isxdigit(*s))
+    while (isxdigit(*s))
     {
-	if (!vim_isxdigit(s[1]))
+	if (!isxdigit(s[1]))
 	    goto failed;
 	ga_append(&blob->bv_ga, (hex2nr(s[0]) << 4) + hex2nr(s[1]));
 	s += 2;
-	if (*s == '.' && vim_isxdigit(s[1]))
+	if (*s == '.' && isxdigit(s[1]))
 	    ++s;
     }
     if (*skipwhite(s) != NUL)

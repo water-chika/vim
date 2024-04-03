@@ -338,7 +338,7 @@ compile_unletlock(char_u *arg, exarg_T *eap, cctx_T *cctx)
     {
 	if (eap->forceit)
 	    deep = -1;
-	else if (vim_isdigit(*p))
+	else if (isdigit(*p))
 	{
 	    deep = getdigits(&p);
 	    p = skipwhite(p);

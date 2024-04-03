@@ -84,7 +84,7 @@ skip_string(char_u *p)
 	    if (p[1] == '\\' && p[2] != NUL)    // '\n' or '\000'
 	    {
 		++i;
-		while (vim_isdigit(p[i - 1]))   // '\000'
+		while (isdigit(p[i - 1]))   // '\000'
 		    ++i;
 	    }
 	    if (p[i - 1] != NUL && p[i] == '\'')    // check for trailing '
@@ -1885,7 +1885,7 @@ parse_cino(buf_T *buf)
 	if (*p == '.')	    // ".5s" means a fraction
 	{
 	    fraction = atol((char *)++p);
-	    while (VIM_ISDIGIT(*p))
+	    while (isdigit(*p))
 	    {
 		++p;
 		if (divider)
@@ -2231,7 +2231,7 @@ get_c_indent(void)
 		    what = *p++;
 		else if (*p == COM_LEFT || *p == COM_RIGHT)
 		    align = *p++;
-		else if (VIM_ISDIGIT(*p) || *p == '-')
+		else if (isdigit(*p) || *p == '-')
 		    off = getdigits(&p);
 		else
 		    ++p;

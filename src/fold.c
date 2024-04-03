@@ -1868,7 +1868,7 @@ foldDelMarker(linenr_T lnum, char_u *marker, int markerlen)
 	{
 	    // Found the marker, include a digit if it's there.
 	    len = markerlen;
-	    if (VIM_ISDIGIT(p[len]))
+	    if (isdigit(p[len]))
 		++len;
 	    if (*cms != NUL)
 	    {
@@ -2071,7 +2071,7 @@ foldtext_cleanup(char_u *str)
 	    len = foldendmarkerlen;
 	if (len > 0)
 	{
-	    if (VIM_ISDIGIT(s[len]))
+	    if (isdigit(s[len]))
 		++len;
 
 	    // May remove 'commentstring' start.  Useful when it's a double
@@ -3451,7 +3451,7 @@ foldlevelMarker(fline_T *flp)
 	{
 	    // found startmarker: set flp->lvl
 	    s += foldstartmarkerlen;
-	    if (VIM_ISDIGIT(*s))
+	    if (isdigit(*s))
 	    {
 		n = atoi((char *)s);
 		if (n > 0)
@@ -3476,7 +3476,7 @@ foldlevelMarker(fline_T *flp)
 	{
 	    // found endmarker: set flp->lvl_next
 	    s += foldendmarkerlen;
-	    if (VIM_ISDIGIT(*s))
+	    if (isdigit(*s))
 	    {
 		n = atoi((char *)s);
 		if (n > 0)

@@ -5080,7 +5080,7 @@ gui_mch_font_dialog(char_u *oldval)
 
 	// Annoying bug in GTK (or Pango): if the font name does not include a
 	// size, zero is used.  Use default point size ten.
-	if (!vim_isdigit(oldname[STRLEN(oldname) - 1]))
+	if (!isdigit(oldname[STRLEN(oldname) - 1]))
 	{
 	    char_u	*p = vim_strnsave(oldname, STRLEN(oldname) + 3);
 
